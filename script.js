@@ -42,18 +42,41 @@
 
 //TASK 2
 //====================================================
-function selectFromInterval(...param) {
-	if (param.length < 3) {
-		throw new Error()
-	}
-	if (!Array.isArray(param[0]) || param[0].length < 1 || param[0].some(item => !Number.isInteger(item) || !Number.isFinite(item))) {
-		throw new Error()
-	}
-	let interval = param.slice(1).sort((a, b) => a - b)
-	if (interval.some(item => !Number.isInteger(item) || !Number.isFinite(item))) {
-		throw new Error()
-	}
-	return param[0].filter((item) => item >= interval[0] & item <= interval[1])
-}
+// function selectFromInterval(...param) {
+// 	if (param.length < 3) {
+// 		throw new Error()
+// 	}
+// 	if (!Array.isArray(param[0]) || param[0].length < 1 || param[0].some(item => !Number.isInteger(item) || !Number.isFinite(item))) {
+// 		throw new Error()
+// 	}
+// 	let interval = param.slice(1).sort((a, b) => a - b)
+// 	if (interval.some(item => !Number.isInteger(item) || !Number.isFinite(item))) {
+// 		throw new Error()
+// 	}
+// 	return param[0].filter((item) => item >= interval[0] & item <= interval[1])
+// }
 //TASK 3
-//====================================================      
+//====================================================
+
+function createIterable(...arg) {
+	if (arg.length < 2 || arg.some(item => !Number.isInteger(item) || !Number.isFinite(item)) || arg[1] <= arg[0]) {
+		throw new Error()
+	}
+	return {
+		from: arg[0],
+		to: arg[1],
+
+		[Symbol.iterator]() {
+			this.current = this.from
+			return this
+		},
+
+		next() {
+			if (this.current <= this.to) {
+				return { done: false, value: this.current++ }
+			} else {
+				return { done: true }
+			}
+		}
+	}
+}
