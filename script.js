@@ -27,7 +27,7 @@ class Stack {
 
 	constructor(maxlength) {
 		this.#last = null
-		if (typeof maxlength !== 'number' || !Number.isInteger(value) || isNaN(maxlength) || !isFinite(maxlength)) {
+		if (typeof maxlength !== 'number' || !Number.isInteger(maxlength) || isNaN(maxlength) || !isFinite(maxlength)) {
 			throw new Error('Invalid limit value')
 		}
 		else if (maxlength < 0) {
@@ -60,11 +60,14 @@ class Stack {
 
 	pop() {
 		this.#chechLength(--this.#currentLength)
+		let res = this.#last
 		if (this.#last.prev === null) {
 			this.#last = null
+			return res
 		}
 		else {
 			this.#last = this.#last.prev
+			return res
 		}
 	}
 
@@ -94,7 +97,7 @@ class Stack {
 	}
 
 	static fromIterable(iterable) {
-		let stackResult = new Stack
+		let stackResult = new Stack()
 		if (typeof iterable[Symbol.iterator] === 'undefined') {
 			throw new Error('Not iterable')
 		}
@@ -249,10 +252,10 @@ class Car {
 		}
 		this.#yearOfManufacturing = value
 	}
-	get maxspeed() {
+	get maxSpeed() {
 		return this.#maxSpeed
 	}
-	set maxspeed(value) {
+	set maxSpeed(value) {
 		if (typeof value != 'number' || !Number.isInteger(value) || isNaN(value) || !isFinite(value) || value < 100 || value > 330) {
 			throw new Error('Invalid max speed')
 		}
@@ -312,7 +315,7 @@ class Car {
 	fillUpGasTank(value) {
 		if (typeof value != 'number' || !Number.isInteger(value) || isNaN(value) || !isFinite(value) || value < 1) {
 			throw new Error('Invalid fuel amount')
-		} else if (this.#maxFuelVolume < this.#maxFuelVolume + value) {
+		} else if (this.#maxFuelVolume < this.#currentFuelVolume + value) {
 			throw new Error('Too much fuel')
 		} else if (this.#isStarted) {
 			throw new Error('You have to shut down your car first')
@@ -333,7 +336,7 @@ class Car {
 			throw new Error('You have to start your car first')
 		}
 		let distance = speed * hours
-		let loseFluel = distance / (100 * this.#fuelConsumption)
+		let loseFluel = distance / 100 * this.#fuelConsumption
 		let takenDamage = this.#damage * distance / 100
 		if (this.#currentFuelVolume - loseFluel < 0) {
 			throw new Error('You don\'t have enough fuel')
