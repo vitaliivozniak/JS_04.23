@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="calculator">
+		<form class="calculator__view">
+			<input data-view class="calculator__current-view" type="text" placeholder="0" readonly>
+		</form>
+		<div class="calculator__keyboard">
+
+			<button data-all-clear class="calculator__key calculator__key-orange">C</button>
+			<button data-change-number class="calculator__key calculator__key-orange">±</button>
+			<button data-delete class="calculator__key calculator__key-orange">Del</button>
+			<button data-operation class="calculator__key calculator__key-orange">/</button>
+
+			<button data-number class="calculator__key">7</button>
+			<button data-number class="calculator__key">8</button>
+			<button data-number class="calculator__key">9</button>
+			<button data-operation class="calculator__key calculator__key-orange">*</button>
+
+			<button data-number class="calculator__key">4</button>
+			<button data-number class="calculator__key">5</button>
+			<button data-number class="calculator__key">6</button>
+			<button data-operation class="calculator__key calculator__key-orange">-</button>
+
+			<button data-number class="calculator__key">1</button>
+			<button data-number class="calculator__key">2</button>
+			<button data-number class="calculator__key">3</button>
+			<button data-operation class="calculator__key calculator__key-orange">+</button>
+
+			<button data-number class="calculator__key">0</button>
+			<button data-number class="calculator__key">00</button>
+			<button data-number class="calculator__key">.</button>
+			<button data-equal class="calculator__key calculator__key-orange">=</button>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+
+</html>
